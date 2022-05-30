@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">INFO6124 Lab2</string>
+
+    <string-array name="courses">
+        <item>INFO6124</item>
+        <item>INFO6125</item>
+        <item>INFO6126</item>
+        <item>INFO6127</item>
+        <item>INFO6128</item>
+        <item>INFO6129</item>
+    </string-array>
+
+    <string name="description_body">
+        Can this contain a lot of text? Can it contain a newline? Yes, it can.
+        Adding a 2nd line like this should work.
+        It should not cause parsing errors.
+    </string>
+
+</resources>
