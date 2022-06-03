@@ -38,32 +38,43 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         spinner.adapter = adapter
         spinner.onItemSelectedListener = this
 
+
+
     }
+
+
 
     fun onButtonClick(view: View) {
 
         when(view.id) {
             R.id.recordButton -> {
-
-
+//Collect input from UI
+                val selectedRdId = radioGroup.checkedRadioButtonId
+                val rdValue = findViewById<RadioButton>(selectedRdId).text.toString()
+                val fullGrade = fullGradeText.text.toString()
+                val rcvGrade = rcvGradeText.text.toString()
+                val percentage = percText.text.toString()
+//Build a data object with the collected data
                 var gr = GradeRecord(
                     spinnerValue,
-                    "lab",
-                    "100",
-                    "70",
-                    "5%"
+                    rdValue,
+                    fullGrade,
+                    rcvGrade,
+                    percentage
                 )
+//Append the data object to the list
                 gradeRecordList.add(gr)
                 topText.text = gradeRecordList.toString()
 //                adapter.notifyItemInserted(courseModalArrayList.size());
+//Write the list into shared pref
                 val sharedPreferences = getSharedPreferences("grade records", MODE_PRIVATE)
                 val editor = sharedPreferences.edit()
                 val gson = Gson()
                 val json: String = gson.toJson(gradeRecordList)
                 editor.putString("grade", json)
                 editor.apply()
-
-                Toast.makeText(this, "Grade record saved.", Toast.LENGTH_LONG).show()
+//Toast a message to let the user know
+                Toast.makeText(this, "Grade record saved.", Toast.LENGTH_SHORT).show()
 
 
 
