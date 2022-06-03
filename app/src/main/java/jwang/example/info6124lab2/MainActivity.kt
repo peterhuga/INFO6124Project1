@@ -1,5 +1,6 @@
 package jwang.example.info6124lab2
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         topText = findViewById(R.id.textView)
 
         radioGroup = findViewById(R.id.radioGroup)
+        radioGroup.check(R.id.rButtonLab)
         fullGradeText = findViewById((R.id.fullGradeEditText))
         rcvGradeText = findViewById(R.id.rcvGradeEditText)
         percText = findViewById(R.id.percEditText)
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         when(view.id) {
             R.id.recordButton -> {
 //Collect input from UI
-                val selectedRdId = radioGroup.checkedRadioButtonId
+                val selectedRdId: Int = radioGroup.checkedRadioButtonId
                 val rdValue = findViewById<RadioButton>(selectedRdId).text.toString()
                 val fullGrade = fullGradeText.text.toString()
                 val rcvGrade = rcvGradeText.text.toString()
@@ -75,14 +77,18 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 editor.apply()
 //Toast a message to let the user know
                 Toast.makeText(this, "Grade record saved.", Toast.LENGTH_SHORT).show()
-
-
-
+                val intent = Intent(this, SecondActivity::class.java).apply {
+                    putExtra("extra_object", gr)
+                }
+                startActivity(intent)
             }
 
-//            R.id.descButton -> {
-//
-//            }
+            R.id.descButton -> {
+                val intent = Intent(this, ThirdActivity::class.java).apply {
+                }
+
+                startActivity(intent)
+            }
        }
     }
 
