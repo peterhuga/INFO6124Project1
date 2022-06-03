@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">INFO6124 Lab2</string>
+    <string name="app_name">INFO6124 Project 1</string>
 
     <string-array name="courses">
         <item>INFO6124</item>
@@ -11,9 +11,17 @@
     </string-array>
 
     <string name="description_body">
+        Author: Jianwei Wang \n
+        \n
         Can this contain a lot of text? Can it contain a newline? Yes, it can.
         Adding a 2nd line like this should work.
         It should not cause parsing errors.
     </string>
+    <string name="select_course">Select Course</string>
+    <string name="lab">Lab</string>
+    <string name="project">Project</string>
+    <string name="test">Test</string>
+    <string name="mid_term">Mid Term</string>
+    <string name="final_exam">Final Exam</string>
 
 </resources>
