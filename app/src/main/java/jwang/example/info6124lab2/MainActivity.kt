@@ -1,11 +1,15 @@
 package jwang.example.info6124lab2
 
+import android.app.ProgressDialog.show
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -17,7 +21,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var rcvGradeText: EditText
     lateinit var percText: EditText
     lateinit var topText: TextView
-    val gradeRecordList: MutableList<GradeRecord> = ArrayList()
+    private var gradeRecordList: MutableList<GradeRecord> = ArrayList<GradeRecord>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +54,18 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        val sharedPreferences = getSharedPreferences("grade records", MODE_PRIVATE)
+        val gson = Gson()
+        val json = sharedPreferences.getString("record", "")
+        val type = object : TypeToken<ArrayList<GradeRecord>>() {}.type
+        gradeRecordList = gson.fromJson(json,type)
+
+    }
+
+
+
 
 
     fun onButtonClick(view: View) {
@@ -77,21 +93,19 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 //Write the list into shared pref
                 val sharedPreferences = getSharedPreferences("grade records", MODE_PRIVATE)
                 val editor = sharedPreferences.edit()
-//                val gson = Gson()
-//                val json: String = gson.toJson(gradeRecordList)
-                editor.putString("record", gradeRecordList.toString())
+                val gson = Gson()
+                val json: String = gson.toJson(gradeRecordList)
+                editor.putString("record", json)
                 editor.apply()
 //Toast a message to let the user know
                 Toast.makeText(this, "Grade record saved.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, SecondActivity::class.java).apply {
-                    putExtra("extra_object", gr)
-                }
+
+                val intent = Intent(this, SecondActivity::class.java).apply { }
                 startActivity(intent)
             }
 
             R.id.descButton -> {
-                val intent = Intent(this, ThirdActivity::class.java).apply {
-                }
+                val intent = Intent(this, ThirdActivity::class.java).apply { }
 
                 startActivity(intent)
             }
