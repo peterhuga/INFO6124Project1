@@ -3,6 +3,7 @@ package jwang.example.info6124lab2
 import android.app.ProgressDialog.show
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -21,12 +22,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var rcvGradeText: EditText
     lateinit var percText: EditText
     lateinit var topText: TextView
-    private var gradeRecordList: MutableList<GradeRecord> = ArrayList<GradeRecord>()
+    private lateinit var gradeRecordList: MutableList<GradeRecord>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        gradeRecordList = ArrayList<GradeRecord>()
+
 
 
 
@@ -56,11 +59,18 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     override fun onResume() {
         super.onResume()
-        val sharedPreferences = getSharedPreferences("grade records", MODE_PRIVATE)
+
+        try {
+
+
+        val sharedPreferences: SharedPreferences = getSharedPreferences("grade records", MODE_PRIVATE)
         val gson = Gson()
         val json = sharedPreferences.getString("record", "")
         val type = object : TypeToken<ArrayList<GradeRecord>>() {}.type
-        gradeRecordList = gson.fromJson(json,type)
+        gradeRecordList = gson.fromJson(json, type)
+        } catch (e: Exception) {
+            null
+        }
 
     }
 
@@ -89,7 +99,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 //Append the data object to the list
                 gradeRecordList.add(gr)
 
-//                adapter.notifyItemInserted(gradeRecordList.size());
+
 //Write the list into shared pref
                 val sharedPreferences = getSharedPreferences("grade records", MODE_PRIVATE)
                 val editor = sharedPreferences.edit()

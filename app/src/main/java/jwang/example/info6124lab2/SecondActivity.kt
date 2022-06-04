@@ -13,8 +13,8 @@ import com.google.gson.reflect.TypeToken
 
 class SecondActivity : AppCompatActivity() {
 
-    val TAG = "activity2"
-    lateinit var gradeRecordList: ArrayList<GradeRecord>
+
+
     lateinit var recyclerView: RecyclerView
     lateinit var recyclerViewManager: RecyclerView.LayoutManager
 
@@ -24,10 +24,9 @@ class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
-        Log.i(TAG, "starting")
 
 
-        gradeRecordList= ArrayList<GradeRecord>()
+        var gradeRecordList: ArrayList<GradeRecord> = ArrayList<GradeRecord>()
         val sharedPreferences = getSharedPreferences("grade records", MODE_PRIVATE)
         val gson = Gson()
         val json = sharedPreferences.getString("record", "")
