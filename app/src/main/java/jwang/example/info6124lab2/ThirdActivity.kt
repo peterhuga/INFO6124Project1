@@ -12,9 +12,6 @@ class ThirdActivity : AppCompatActivity() {
     }
 
     fun onButtonClick(view: View) {
-        val intent = Intent(this, MainActivity::class.java).apply {
-        }
-
-        startActivity(intent)
+        finish()
     }
 }

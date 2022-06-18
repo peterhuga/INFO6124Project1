@@ -32,6 +32,7 @@ class SecondActivity : AppCompatActivity() {
         val json = sharedPreferences.getString("record", "")
         val type = object : TypeToken<ArrayList<GradeRecord>>() {}.type
         gradeRecordList = gson.fromJson(json,type)
+        val textViewCounter: TextView = findViewById(R.id.textViewCounter)
 
 
 
@@ -41,11 +42,15 @@ class SecondActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = RecyclerAdapter(gradeRecordList)
 
+        val counterText: String = getString (R.string.counter_text) + " " + RecyclerAdapter(gradeRecordList).itemCount.toString()
+        textViewCounter.text =counterText
+
+
+
     }
 
     fun onButtonClick(view: View) {
-        val intent = Intent(this, MainActivity::class.java).apply {}
-        startActivity(intent)
+        finish()
 
 
 

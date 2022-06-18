@@ -5,6 +5,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -59,6 +60,9 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     override fun onResume() {
         super.onResume()
+        fullGradeText.setText("")
+        rcvGradeText.setText("")
+        percText.setText("")
 
         try {
 
@@ -69,7 +73,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val type = object : TypeToken<ArrayList<GradeRecord>>() {}.type
         gradeRecordList = gson.fromJson(json, type)
         } catch (e: Exception) {
-            null
+            e.printStackTrace()
         }
 
     }
@@ -82,12 +86,23 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         when(view.id) {
             R.id.recordButton -> {
+
 //Collect input from UI
                 val selectedRdId: Int = radioGroup.checkedRadioButtonId
                 val rdValue = findViewById<RadioButton>(selectedRdId).text.toString()
                 val fullGrade = fullGradeText.text.toString()
                 val rcvGrade = rcvGradeText.text.toString()
                 val percentage = percText.text.toString()
+
+
+                if (fullGrade == ""||rcvGrade ==""||percentage=="") {
+                    Toast.makeText(applicationContext, "Some feild is empty!",Toast.LENGTH_SHORT).show()
+
+                } else if (rcvGrade > fullGrade) {
+                    Toast.makeText(applicationContext, "Received grade can't be higher than full grade!",Toast.LENGTH_SHORT).show()
+                } else if (percentage.toInt() > 100) {
+                    Toast.makeText(applicationContext, "Percent can't be higher than 100!",Toast.LENGTH_SHORT).show()
+                } else {
 //Build a data object with the collected data
                 var gr = GradeRecord(
                     spinnerValue,
@@ -110,12 +125,13 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 //Toast a message to let the user know
                 Toast.makeText(this, "Grade record saved.", Toast.LENGTH_SHORT).show()
 
-                val intent = Intent(this, SecondActivity::class.java).apply { }
+                val intent = Intent(this, SecondActivity::class.java)
                 startActivity(intent)
+            }
             }
 
             R.id.descButton -> {
-                val intent = Intent(this, ThirdActivity::class.java).apply { }
+                val intent = Intent(this, ThirdActivity::class.java)
 
                 startActivity(intent)
             }
@@ -127,6 +143,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+
 
 
 }
