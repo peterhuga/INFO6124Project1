@@ -30,5 +30,15 @@
     <string name="rcv_gt_full">Received grade can\'t be higher than full grade!</string>
     <string name="perc_gt_100">"Percent can\'t be higher than 100!"</string>
     <string name="empty_field">Some field is empty!</string>
+    <string name="select_grade_type">Select Grade Type</string>
+    <string name="enter_grade_and_percentage">Enter Grade and Percentage</string>
+    <string name="full_grade">Full Grade</string>
+    <string name="received_grade">Received Grade</string>
+    <string name="symbol">%</string>
+    <string name="weight_of_total_grade">Weight of total grade</string>
+    <string name="settings">settings</string>
+    <string name="grade_records">Grade Records</string>
+    <string name="back_to_main_from_second">back to main</string>
+    <string name="delete_all">Delete All</string>
 
 </resources>

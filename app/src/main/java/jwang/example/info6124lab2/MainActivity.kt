@@ -1,15 +1,11 @@
 package jwang.example.info6124lab2
 
-import android.app.ProgressDialog.show
-import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -132,7 +128,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
             }
 
-            R.id.descButton -> {
+            R.id.settingsButton -> {
                 val intent = Intent(this, ThirdActivity::class.java)
 
                 startActivity(intent)
