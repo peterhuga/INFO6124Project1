@@ -26,6 +26,9 @@
     <string name="application_description">Application Description</string>
     <string name="back_to_main">Back to main</string>
     <string name="record">Record</string>
-    <string name="counter_text">Number of grades recorded: </string>
+    <string name="full_over_100">Full grade can\'t be higher than 100!</string>
+    <string name="rcv_gt_full">Received grade can\'t be higher than full grade!</string>
+    <string name="perc_gt_100">"Percent can\'t be higher than 100!"</string>
+    <string name="empty_field">Some field is empty!</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package jwang.example.info6124lab2
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -15,9 +16,12 @@ class SecondActivity : AppCompatActivity() {
 
 
 
+
+
     lateinit var recyclerView: RecyclerView
     lateinit var recyclerViewManager: RecyclerView.LayoutManager
-
+    lateinit var gradeRecordList: ArrayList<GradeRecord>
+    lateinit var adapter: RecyclerAdapter
 
 
 
@@ -26,13 +30,15 @@ class SecondActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second)
 
 
-        var gradeRecordList: ArrayList<GradeRecord> = ArrayList<GradeRecord>()
+
         val sharedPreferences = getSharedPreferences("grade records", MODE_PRIVATE)
         val gson = Gson()
         val json = sharedPreferences.getString("record", "")
         val type = object : TypeToken<ArrayList<GradeRecord>>() {}.type
         gradeRecordList = gson.fromJson(json,type)
-        val textViewCounter: TextView = findViewById(R.id.textViewCounter)
+
+
+
 
 
 
@@ -40,19 +46,32 @@ class SecondActivity : AppCompatActivity() {
         recyclerViewManager = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = recyclerViewManager
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = RecyclerAdapter(gradeRecordList)
+        adapter = RecyclerAdapter(gradeRecordList)
+        recyclerView.adapter = adapter
 
-        val counterText: String = getString (R.string.counter_text) + " " + RecyclerAdapter(gradeRecordList).itemCount.toString()
-        textViewCounter.text =counterText
 
 
 
     }
 
     fun onButtonClick(view: View) {
+
+        val sharedPreferences = getSharedPreferences("grade records", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val gson = Gson()
+        val json: String = gson.toJson(gradeRecordList)
+        editor.putString("record", json)
+        editor.apply()
         finish()
 
 
+
+    }
+
+    fun onDeleteAllClick(view: View) {
+        gradeRecordList = ArrayList()
+        adapter = RecyclerAdapter(gradeRecordList)
+        recyclerView.adapter = adapter
 
     }
 

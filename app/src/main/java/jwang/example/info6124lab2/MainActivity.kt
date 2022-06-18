@@ -96,12 +96,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 
                 if (fullGrade == ""||rcvGrade ==""||percentage=="") {
-                    Toast.makeText(applicationContext, "Some feild is empty!",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, getString(R.string.empty_field),Toast.LENGTH_SHORT).show()
 
-                } else if (rcvGrade > fullGrade) {
-                    Toast.makeText(applicationContext, "Received grade can't be higher than full grade!",Toast.LENGTH_SHORT).show()
+                } else if (fullGrade.toInt() > 100){
+                    Toast.makeText(applicationContext, getString(R.string.full_over_100),Toast.LENGTH_SHORT).show()
+                }else if (rcvGrade > fullGrade) {
+                    Toast.makeText(applicationContext, getString(R.string.rcv_gt_full),Toast.LENGTH_SHORT).show()
                 } else if (percentage.toInt() > 100) {
-                    Toast.makeText(applicationContext, "Percent can't be higher than 100!",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, getString(R.string.perc_gt_100),Toast.LENGTH_SHORT).show()
                 } else {
 //Build a data object with the collected data
                 var gr = GradeRecord(

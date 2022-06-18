@@ -1,13 +1,16 @@
 package jwang.example.info6124lab2
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+
+import android.content.SharedPreferences
 
 class RecyclerAdapter(private val dataSet: ArrayList<GradeRecord>):
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
@@ -21,6 +24,7 @@ class RecyclerAdapter(private val dataSet: ArrayList<GradeRecord>):
         val textViewRcvGrade: TextView
         val textViewPercentage: TextView
         val cardView: LinearLayout
+        val deleteButton: Button
 
         init {
             textViewCourseName = view.findViewById(R.id.courseNameRvTxt)
@@ -29,6 +33,7 @@ class RecyclerAdapter(private val dataSet: ArrayList<GradeRecord>):
             textViewRcvGrade = view.findViewById(R.id.rcvGradeRvTxt)
             textViewPercentage = view.findViewById(R.id.percentageRvTxt)
             cardView = view.findViewById(R.id.cardView)
+            deleteButton = view.findViewById(R.id.deleteButton)
         }
     }
 
@@ -53,12 +58,17 @@ class RecyclerAdapter(private val dataSet: ArrayList<GradeRecord>):
         holder.textViewFullGrade.text = "Full Grade: " +  dataSet[position].fullGrade
         holder.textViewRcvGrade.text = "Received Grade: " + dataSet[position].receivedGrade
         holder.textViewPercentage.text = "Weight In Course: " + dataSet[position].percentage + "%"
+        holder.deleteButton.setOnClickListener{
+            dataSet.removeAt(position)
+            notifyDataSetChanged()
+
+        }
 
         when(dataSet[position].courseName) {
 
             "INFO6124" -> {holder.cardView.setBackgroundColor(Color.GREEN)}
             "INFO6125" -> {holder.cardView.setBackgroundColor(Color.RED)}
-            "INFO6126" -> {holder.cardView.setBackgroundColor(Color.BLUE)}
+            "INFO6126" -> {holder.cardView.setBackgroundColor(Color.rgb(33,135,245))}
             "INFO6127" -> {holder.cardView.setBackgroundColor(Color.GRAY)}
             "INFO6128" -> {holder.cardView.setBackgroundColor(Color.MAGENTA)}
             "INFO6129" -> {holder.cardView.setBackgroundColor(Color.BLACK)}
