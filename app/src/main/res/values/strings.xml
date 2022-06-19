@@ -40,5 +40,10 @@
     <string name="grade_records">Grade Records</string>
     <string name="back_to_main_from_second">back to main</string>
     <string name="delete_all">Delete All</string>
+    <string name="course_code">Course Code</string>
+    <string name="total_weight_submitted">Total Weight Submitted</string>
+    <string name="grade_to_date">Grade To Date</string>
+    <string name="go_back_to_main">Go back to main</string>
+    <string name="summary">Summary</string>
 
 </resources>

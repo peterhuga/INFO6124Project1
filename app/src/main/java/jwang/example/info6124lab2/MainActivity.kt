@@ -3,6 +3,7 @@ package jwang.example.info6124lab2
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -81,6 +82,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     fun onButtonClick(view: View) {
 
         when(view.id) {
+            R.id.summaryButton -> {
+                val intent = Intent(this, FourthActivity::class.java)
+
+                startActivity(intent)
+            }
+
             R.id.recordButton -> {
 
 //Collect input from UI
@@ -91,12 +98,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 val percentage = percText.text.toString()
 
 
+
+
                 if (fullGrade == ""||rcvGrade ==""||percentage=="") {
                     Toast.makeText(applicationContext, getString(R.string.empty_field),Toast.LENGTH_SHORT).show()
 
                 } else if (fullGrade.toInt() > 100){
                     Toast.makeText(applicationContext, getString(R.string.full_over_100),Toast.LENGTH_SHORT).show()
-                }else if (rcvGrade > fullGrade) {
+                }else if (rcvGrade.toInt() > fullGrade.toInt()) {
                     Toast.makeText(applicationContext, getString(R.string.rcv_gt_full),Toast.LENGTH_SHORT).show()
                 } else if (percentage.toInt() > 100) {
                     Toast.makeText(applicationContext, getString(R.string.perc_gt_100),Toast.LENGTH_SHORT).show()
