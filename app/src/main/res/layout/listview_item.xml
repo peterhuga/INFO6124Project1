@@ -15,7 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="8"
-            android:text="Course Name" />
+            android:text="@string/course_name"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/courseName"
@@ -23,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="end"
-            android:text="TextView" />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -36,15 +37,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="8"
-            android:text="Total Grade Submitted %" />
+            android:text="@string/total_grade_submitted" />
 
         <TextView
             android:id="@+id/totalGradeSubmitted"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:gravity="end"
-            android:text="TextView" />
+            android:gravity="end" />
     </LinearLayout>
 
     <LinearLayout
@@ -57,15 +57,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="8"
-            android:text="Grade To Date %" />
+            android:text="@string/grade_to_date" />
 
         <TextView
             android:id="@+id/gradeToDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:gravity="end"
-            android:text="TextView" />
+            android:gravity="end" />
     </LinearLayout>
 
 </LinearLayout>

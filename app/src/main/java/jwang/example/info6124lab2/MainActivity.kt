@@ -1,14 +1,17 @@
 package jwang.example.info6124lab2
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+
 
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -23,9 +26,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var gradeRecordList: MutableList<GradeRecord>
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         gradeRecordList = ArrayList<GradeRecord>()
 
 
@@ -84,6 +90,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         when(view.id) {
             R.id.summaryButton -> {
                 val intent = Intent(this, FourthActivity::class.java)
+
+                startActivity(intent)
+            }
+
+            R.id.seeRecordsButton -> {
+                val intent = Intent(this, SecondActivity::class.java)
 
                 startActivity(intent)
             }

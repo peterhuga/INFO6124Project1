@@ -1,5 +1,7 @@
 package jwang.example.info6124lab2
 
+import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +9,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+
 import androidx.recyclerview.widget.RecyclerView
 
-import android.content.SharedPreferences
+
 
 class RecyclerAdapter(private val dataSet: ArrayList<GradeRecord>):
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
@@ -53,11 +55,11 @@ class RecyclerAdapter(private val dataSet: ArrayList<GradeRecord>):
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.textViewCourseName.text = "Course Name: " + dataSet[position].courseName
-        holder.textViewGradeType.text = "Grade Type: " + dataSet[position].gradeType
-        holder.textViewFullGrade.text = "Full Grade: " +  dataSet[position].fullGrade
-        holder.textViewRcvGrade.text = "Received Grade: " + dataSet[position].receivedGrade
-        holder.textViewPercentage.text = "Weight In Course: " + dataSet[position].percentage + "%"
+        holder.textViewCourseName.text = App.context?.resources?.getString(R.string.course_name) + ":" + " " + dataSet[position].courseName
+        holder.textViewGradeType.text = App.context?.resources?.getString(R.string.grade_type) + ":" + " " + dataSet[position].gradeType
+        holder.textViewFullGrade.text = App.context?.resources?.getString(R.string.full_grade) + ":" + " " + dataSet[position].fullGrade
+        holder.textViewRcvGrade.text = App.context?.resources?.getString(R.string.received_grade) + ":" + " " + dataSet[position].receivedGrade
+        holder.textViewPercentage.text = App.context?.resources?.getString(R.string.weight_of_total_grade) + ":" + " " + dataSet[position].percentage + "%"
         holder.deleteButton.setOnClickListener{
             dataSet.removeAt(position)
             notifyDataSetChanged()

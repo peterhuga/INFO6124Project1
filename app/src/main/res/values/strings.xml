@@ -35,15 +35,21 @@
     <string name="full_grade">Full Grade</string>
     <string name="received_grade">Received Grade</string>
     <string name="symbol">%</string>
-    <string name="weight_of_total_grade">Weight of total grade</string>
+    <string name="weight_of_total_grade">Weight in total grade</string>
     <string name="settings">settings</string>
     <string name="grade_records">Grade Records</string>
     <string name="back_to_main_from_second">back to main</string>
     <string name="delete_all">Delete All</string>
     <string name="course_code">Course Code</string>
     <string name="total_weight_submitted">Total Weight Submitted</string>
-    <string name="grade_to_date">Grade To Date</string>
+    <string name="grade_to_date">Grade To Date %</string>
     <string name="go_back_to_main">Go back to main</string>
     <string name="summary">Summary</string>
+    <string name="summaryButton">Summary</string>
+    <string name="course_name">Course Code</string>
+    <string name="total_grade_submitted">Total Grade Submitted %</string>
+    <string name="grade_type">Grade Type</string>
+    <string name="see_records">See Records</string>
+
 
 </resources>
