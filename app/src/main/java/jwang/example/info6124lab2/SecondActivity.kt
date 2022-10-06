@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.io.FileNotFoundException
+import java.lang.reflect.Array
 
 class SecondActivity : AppCompatActivity() {
 
@@ -28,14 +30,18 @@ class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
+        //gradeRecordList = ArrayList()
 
 
-
-        val sharedPreferences = getSharedPreferences("grade records", MODE_PRIVATE)
-        val gson = Gson()
-        val json = sharedPreferences.getString("record", "")
-        val type = object : TypeToken<ArrayList<GradeRecord>>() {}.type
-        gradeRecordList = gson.fromJson(json,type)
+        try {
+            val sharedPreferences = getSharedPreferences("grade records", MODE_PRIVATE)
+            val gson = Gson()
+            val json = sharedPreferences.getString("record", "")
+            val type = object : TypeToken<ArrayList<GradeRecord>>() {}.type
+            gradeRecordList = gson.fromJson(json, type)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
 
 
@@ -69,9 +75,10 @@ class SecondActivity : AppCompatActivity() {
     }
 
     fun onDeleteAllClick(view: View) {
-        gradeRecordList = ArrayList()
-        adapter = RecyclerAdapter(gradeRecordList)
-        recyclerView.adapter = adapter
+        gradeRecordList.clear()
+//        adapter = RecyclerAdapter(gradeRecordList)
+//        recyclerView.adapter = adapter
+       adapter.notifyDataSetChanged()
 
     }
 

@@ -114,13 +114,12 @@
         android:id="@+id/seeRecordsButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:onClick="onButtonClick"
         android:text="@string/see_records"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/summaryButton"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        android:onClick="onButtonClick"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/summaryButton"

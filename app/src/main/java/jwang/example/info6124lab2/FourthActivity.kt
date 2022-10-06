@@ -21,13 +21,20 @@ class FourthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fourth)
-
-        val sharedPreferences: SharedPreferences = getSharedPreferences("grade records", MODE_PRIVATE)
-        val gson = Gson()
-        val json = sharedPreferences.getString("record", "")
-        val type = object : TypeToken<ArrayList<GradeRecord>>() {}.type
         gradeRecordList = ArrayList()
-        gradeRecordList = gson.fromJson(json, type)
+
+        try {
+
+            val sharedPreferences: SharedPreferences =
+                getSharedPreferences("grade records", MODE_PRIVATE)
+            val gson = Gson()
+            val json = sharedPreferences.getString("record", "")
+            val type = object : TypeToken<ArrayList<GradeRecord>>() {}.type
+
+            gradeRecordList = gson.fromJson(json, type)
+        } catch (e:Exception) {
+            e.printStackTrace()
+        }
         summaryList = ArrayList()
         var adapter: MyAdapter? = null
 

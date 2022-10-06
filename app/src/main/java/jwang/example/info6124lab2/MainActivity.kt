@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.courses,
-            android.R.layout.simple_gallery_item
+            android.R.layout.simple_spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
