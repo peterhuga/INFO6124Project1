@@ -22,7 +22,7 @@ class SecondActivity : AppCompatActivity() {
 
     lateinit var recyclerView: RecyclerView
     lateinit var recyclerViewManager: RecyclerView.LayoutManager
-    lateinit var gradeRecordList: ArrayList<GradeRecord>
+    var gradeRecordList = arrayListOf<GradeRecord>()
     lateinit var adapter: RecyclerAdapter
 
 

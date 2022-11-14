@@ -21,7 +21,7 @@
     <string name="project">Project</string>
     <string name="test">Test</string>
     <string name="mid_term">Mid Term</string>
-    <string name="final_exam">Final Exam</string>
+    <string name="final_exam">Exam</string>
     <string name="textview">TextView</string>
     <string name="application_description">Application Description</string>
     <string name="back_to_main">Back to main</string>
